@@ -1,13 +1,16 @@
 package bot.tutorial.symulacja.pve.classes;
 
-public class Player extends Enemy implements Fighting {
+import java.util.Random;
 
-	private double SzansaTk;
+public class Player extends Enemy {
+
+	private int SzansaTk;
 	
 	public Player() {
 		super();
 		this.setLevel(1);
 		this.setSzybkosc(100);
+		this.setDmg(99);
 		this.setHp(10000);
 		this.setObrona(10000);
 		this.setZrecznosc(10000);
@@ -15,17 +18,22 @@ public class Player extends Enemy implements Fighting {
 	}
 	
 	
-	public double getSzansaTk() {
+	public int getSzansaTk() {
 		return SzansaTk;
 	}
 
 
-	public void setSzansaTk(double szansaTk) {
+	public void setSzansaTk(int szansaTk) {
 		SzansaTk = szansaTk;
 	}
+	
+	public double attack() {
 
-
-	public String attack() {
-		return "Atakuje gracz";	
+		Random losuj = new Random();
+		
+		return (this.getDmg()+1+losuj.nextInt(this.getLevel()*5))
+				*Tk.mnoznik(this.getSzansaTk());
 	}
+
+	
 }

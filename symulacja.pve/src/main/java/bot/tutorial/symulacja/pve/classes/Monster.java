@@ -1,23 +1,48 @@
 package bot.tutorial.symulacja.pve.classes;
 
-public class Monster extends Enemy implements Fighting, Loadable {
+import java.io.File;
+import java.util.Scanner;
 
-	public String attack() {
-		
-		return "Atakuje powtór";
-		
-	}
+public class Monster extends Enemy implements Loadable {
 
 	public Monster() {
 		super();
-		//this.setSzybkosc(500);
-		this.setLevel(100);
 	}
 
-	public void load(Enemy e) {
-		// TODO Auto-generated method stub
+	public void load(Enemy e, int lvl) 
+	{
+		Scanner skan = null;
+		try 
+		{
+			skan = new Scanner(new File("C:\\Users\\Norbert\\git\\symulacja.pve\\src\\main\\java\\bot\\tutorial\\symulacja\\pve\\resources\\staty_moba_elakka.txt"));
+			//Scanner skan = new Scanner(new File("staty_moba_elakka.txt"));
+			System.out.println("Wczytano staty!");
+		} catch(Exception error) 
+		{
+			System.out.println("Nie można wczytać pliku");
+		}
 		
+		int i=1;
+		int temp = 0;
+		while(i<=lvl) 
+		{
+				this.setLevel(skan.nextInt());
+				this.setHp(skan.nextInt());
+				this.setZrecznosc(skan.nextDouble());
+				this.setDmg(skan.nextDouble());
+				this.setSzybkosc(skan.nextDouble());
+				this.setObrona(skan.nextDouble());
+				skan.next();
+				skan.next();
+				
+				if(lvl==this.getLevel()) break;
+				
+				i++;
+		} 
+		
+		System.out.println(this.getLevel()+" "+this.getHp()+" "+this.getZrecznosc()+" "+
+				this.getDmg()+" "+this.getSzybkosc()+" "+this.getObrona());
+		
+		skan.close();
 	}
-	
-
 }

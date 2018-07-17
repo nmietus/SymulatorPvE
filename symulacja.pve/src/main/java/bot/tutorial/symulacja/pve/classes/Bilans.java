@@ -12,10 +12,10 @@ public class Bilans {
 		else if(iloraz <= 0.5) numer = 3;
 		else if(iloraz <= 1) numer = 4;
 		
-		else if(iloraz <= 2) numer = 1;
-		else if(iloraz <= 3) numer = 2;
-		else if(iloraz <= 4) numer = 3;
-		else if(iloraz > 4) numer = 4;
+		else if(iloraz <= 2) numer = 5;
+		else if(iloraz <= 3) numer = 6;
+		else if(iloraz <= 4) numer = 7;
+		else if(iloraz > 4) numer = 8;
 		
 		return numer;
 	}

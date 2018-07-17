@@ -1,6 +1,8 @@
 package bot.tutorial.symulacja.pve.classes;
 
-public class Enemy implements Fighting {
+import java.util.Random;
+
+public class Enemy implements Fighting, Loadable {
 	
 	private int level;
 	private int hp;
@@ -61,9 +63,21 @@ public class Enemy implements Fighting {
 		this.obrona = obrona;
 	}
 
-	public String attack() {
+	public double attack() {
+		//this.getDmg()+Random.ge
+		Random losuj = new Random();
+		
+		return this.getDmg()+1+losuj.nextInt(this.getLevel()*5);
+	}
+
+	public void load(Enemy e) {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+	public void load(Enemy e, int lvl) {
+		// TODO Auto-generated method stub
+		
 	} 
 	
 }
