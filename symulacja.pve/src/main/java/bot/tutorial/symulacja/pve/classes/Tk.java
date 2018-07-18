@@ -14,7 +14,7 @@ public class Tk {
 		}
 		else
 		{
-			if(losuj.nextInt(100)>=5)						//losowanie na odparowanie kryta
+			if(5<losuj.nextInt(100))						//losowanie na odparowanie kryta
 			{
 			
 				int losowanie_na_mnoznik_TK = losuj.nextInt(100);	//losowanie na siłę kryta

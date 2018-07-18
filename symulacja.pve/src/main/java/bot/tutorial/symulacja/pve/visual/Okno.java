@@ -59,7 +59,7 @@ public class Okno extends JFrame
 	{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 582, 304);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -70,7 +70,7 @@ public class Okno extends JFrame
 		contentPane.add(btnStart);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(237, 23, 169, 169);
+		scrollPane.setBounds(10, 23, 534, 169);
 		contentPane.add(scrollPane);
 		
 		textArea = new JTextArea();

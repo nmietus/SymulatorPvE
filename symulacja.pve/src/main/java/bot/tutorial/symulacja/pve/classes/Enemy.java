@@ -4,15 +4,51 @@ import java.util.Random;
 
 public class Enemy implements Fighting, Loadable {
 	
+	public Enemy() {
+		super();
+	}
+	
 	private int level;
 	private int hp;
 	private double dmg;
 	private double szybkosc;
 	private double zrecznosc;
 	private double obrona;
+	private double Ub;
+	private double unik;
+	private double trafienie;
+	private double zdolnoscUniku;
 	
-	public Enemy() {
-		super();
+	public double getTrafienie() {
+		return trafienie;
+	}
+
+	public void setTrafienie(double trafienie) {
+		this.trafienie = trafienie;
+	}
+
+	public double getZdolnoscUniku() {
+		return zdolnoscUniku;
+	}
+
+	public void setZdolnoscUniku(double zdolnoscUniku) {
+		this.zdolnoscUniku = zdolnoscUniku;
+	}
+
+	public double getUb() {
+		return Ub;
+	}
+
+	public void setUb(double ub) {
+		Ub = ub;
+	}
+
+	public double getUnik() {
+		return unik;
+	}
+
+	public void setUnik(double unik) {
+		this.unik = unik;
 	}
 
 	public int getLevel() {
