@@ -23,7 +23,6 @@ public class Monster extends Enemy implements Loadable {
 		}
 		
 		int i=1;
-		int temp = 0;
 		while(i<=lvl) 
 		{
 				this.setLevel(skan.nextInt());

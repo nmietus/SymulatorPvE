@@ -15,6 +15,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.JTable;
 
 public class Okno extends JFrame 
 {
@@ -59,23 +62,42 @@ public class Okno extends JFrame
 	{
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 582, 304);
+		setBounds(100, 100, 802, 497);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		btnStart = new JButton("START");
-		btnStart.setBounds(193, 228, 89, 23);
+		btnStart = new JButton("S Y M U L U J");
+		btnStart.setBounds(152, 403, 333, 45);
 		contentPane.add(btnStart);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 23, 534, 169);
+		scrollPane.setBounds(579, 11, 197, 408);
 		contentPane.add(scrollPane);
 		
 		textArea = new JTextArea();
+		textArea.setWrapStyleWord(true);
 		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
+		
+		JSpinner []spinner = new JSpinner[30];
+		
+		for(int i=0; i<30; i++) {
+			spinner[i] = new JSpinner();
+			spinner[i].setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(1)));
+			spinner[i].setBounds((int) (10+100*Math.floor(i/7)), 25+40*(i%7), 84, 20);
+			contentPane.add(spinner[i]);
+		}
+		
+//		spinner[0] = new JSpinner();
+//		spinner[0].setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(1)));
+//		spinner[0].setBounds(10, 25, 84, 20);
+//		contentPane.add(spinner[0]);
+//		spinner[1] = new JSpinner();
+//		spinner[1].setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(1)));
+//		spinner[1].setBounds(10, 65, 84, 20);
+//		contentPane.add(spinner[1]);
 		
 	}
 	
