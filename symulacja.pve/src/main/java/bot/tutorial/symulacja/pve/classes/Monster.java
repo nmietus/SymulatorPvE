@@ -14,7 +14,7 @@ public class Monster extends Enemy implements Loadable {
 		Scanner skan = null;
 		try 
 		{
-			skan = new Scanner(new File("C:\\Users\\Norbert\\git\\symulacja.pve\\src\\main\\java\\bot\\tutorial\\symulacja\\pve\\resources\\staty_moba_elakka.txt"));
+			skan = new Scanner(new File("staty_moba_elakka.txt"));
 			//Scanner skan = new Scanner(new File("staty_moba_elakka.txt"));
 			System.out.println("Wczytano staty!");
 		} catch(Exception error) 
