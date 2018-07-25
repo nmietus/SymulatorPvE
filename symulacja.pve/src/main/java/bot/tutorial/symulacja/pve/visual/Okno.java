@@ -90,14 +90,7 @@ public class Okno extends JFrame
 			contentPane.add(spinner[i]);
 		}
 		
-//		spinner[0] = new JSpinner();
-//		spinner[0].setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(1)));
-//		spinner[0].setBounds(10, 25, 84, 20);
-//		contentPane.add(spinner[0]);
-//		spinner[1] = new JSpinner();
-//		spinner[1].setModel(new SpinnerNumberModel(new Double(0), new Double(0), null, new Double(1)));
-//		spinner[1].setBounds(10, 65, 84, 20);
-//		contentPane.add(spinner[1]);
+
 		
 	}
 	
