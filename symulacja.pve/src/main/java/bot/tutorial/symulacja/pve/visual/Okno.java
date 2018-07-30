@@ -36,6 +36,8 @@ public class Okno extends JFrame
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
 	
+	private Enemy m = new Monster();
+	
 	private ArrayList kontrolkiGracza;
 	private ArrayList kontrolkiMoba;
 	private ArrayList pochodneKontrolkiGracza;
@@ -46,30 +48,32 @@ public class Okno extends JFrame
 	private JTextField textTrafienieUnikMoba;
 	private JTextField textHpMoba;
 	private JTextField textSzybkoscMoba;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
-	private JTextField textField_17;
-	private JTextField textField_18;
-	private JTextField textField_19;
+	private JTextField textMinDmgMoba;
+	private JTextField textMinAtakGracza;
+	private JTextField textSzansaTrafieniaGracza;
+	private JTextField textMaxKryt10;
+	private JTextField textMinKryt10;
+	private JTextField textMaxDmgMoba;
+	private JTextField textMaxAtakGracza;
+	private JTextField textSzansaUnikuGracza;
+	private JTextField textMaxKryt15;
+	private JTextField textMinKryt15;
+	private JTextField textMaxKryt20;
+	private JTextField textMinKryt20;
+	private JTextField textMaxKryt30;
+	private JTextField textMinKryt30;
+	private JTextField textMaxKryt40;
+	private JTextField textMinKryt40;
+	private JTextField textMaxKryt50;
+	private JTextField textMinKryt50;
+	private JTextField textStalaUniku;
+	private JTextField textSzansaTk;
 	private JTextField textField_20;
 	private JTextField textField_21;
 	private JTextField textField_22;
 	private JSpinner spinnerLevelMoba;
+	private JTextField textField;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -117,7 +121,7 @@ public class Okno extends JFrame
 		contentPane.add(btnStart);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(647, -28, 230, 368);
+		scrollPane.setBounds(647, 11, 230, 329);
 		contentPane.add(scrollPane);
 		
 		textArea = new JTextArea();
@@ -280,21 +284,6 @@ public class Okno extends JFrame
 		contentPane.add(lblZlodziejstwo);
 		
 		spinnerLevelMoba = new JSpinner();
-		spinnerLevelMoba.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
-				
-				//TODO
-				Enemy m = new Monster();
-				m.load(m, (Integer)spinnerLevelMoba.getValue());
-				
-				textAtakMoba.setText(m.getDmg()+"");
-				textObronaMoba.setText(m.getObrona()+"");
-				textTrafienieUnikMoba.setText(m.getZrecznosc()+"");
-				textHpMoba.setText(m.getHp()+"");
-				textSzybkoscMoba.setText(m.getSzybkosc()+"");
-				
-			}
-		});
 		spinnerLevelMoba.setModel(new SpinnerNumberModel(0, 0, 1000, 1));
 		spinnerLevelMoba.setName("");
 		spinnerLevelMoba.setBounds(23, 301, 78, 20);
@@ -364,235 +353,237 @@ public class Okno extends JFrame
 		lblSzybkoscMoba.setBounds(111, 407, 78, 14);
 		contentPane.add(lblSzybkoscMoba);
 		
-		textField = new JTextField();
-		textField.setText("0");
-		textField.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(287, 301, 78, 20);
-		contentPane.add(textField);
+		textMinDmgMoba = new JTextField();
+		textMinDmgMoba.setText("0");
+		textMinDmgMoba.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMinDmgMoba.setEditable(false);
+		textMinDmgMoba.setColumns(10);
+		textMinDmgMoba.setBounds(287, 301, 78, 20);
+		contentPane.add(textMinDmgMoba);
 		
 		JLabel lblMinDmgMoba = new JLabel("Min dmg moba");
 		lblMinDmgMoba.setBounds(287, 286, 78, 14);
 		contentPane.add(lblMinDmgMoba);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("0");
-		textField_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(287, 341, 78, 20);
-		contentPane.add(textField_1);
+		textMinAtakGracza = new JTextField();
+		textMinAtakGracza.setText("0");
+		textMinAtakGracza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMinAtakGracza.setEditable(false);
+		textMinAtakGracza.setColumns(10);
+		textMinAtakGracza.setBounds(287, 341, 78, 20);
+		contentPane.add(textMinAtakGracza);
 		
 		JLabel lblMinAtakGracza = new JLabel("Min atak gracza");
 		lblMinAtakGracza.setBounds(287, 326, 78, 14);
 		contentPane.add(lblMinAtakGracza);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("0");
-		textField_2.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBounds(287, 382, 78, 20);
-		contentPane.add(textField_2);
+		textSzansaTrafieniaGracza = new JTextField();
+		textSzansaTrafieniaGracza.setText("0");
+		textSzansaTrafieniaGracza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textSzansaTrafieniaGracza.setEditable(false);
+		textSzansaTrafieniaGracza.setColumns(10);
+		textSzansaTrafieniaGracza.setBounds(287, 382, 78, 20);
+		contentPane.add(textSzansaTrafieniaGracza);
 		
 		JLabel lblTrafienieGracza = new JLabel("Szansa trafienia gracza");
 		lblTrafienieGracza.setBounds(253, 367, 112, 14);
 		contentPane.add(lblTrafienieGracza);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("0");
-		textField_3.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_3.setEditable(false);
-		textField_3.setColumns(10);
-		textField_3.setBounds(287, 463, 78, 20);
-		contentPane.add(textField_3);
+		textMaxKryt10 = new JTextField();
+		textMaxKryt10.setText("0");
+		textMaxKryt10.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMaxKryt10.setEditable(false);
+		textMaxKryt10.setColumns(10);
+		textMaxKryt10.setBounds(287, 463, 78, 20);
+		contentPane.add(textMaxKryt10);
 		
 		JLabel lblMax = new JLabel("Max *1.1");
 		lblMax.setBounds(287, 448, 78, 14);
 		contentPane.add(lblMax);
 		
-		textField_4 = new JTextField();
-		textField_4.setText("0");
-		textField_4.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_4.setEditable(false);
-		textField_4.setColumns(10);
-		textField_4.setBounds(287, 422, 78, 20);
-		contentPane.add(textField_4);
+		textMinKryt10 = new JTextField();
+		textMinKryt10.setText("0");
+		textMinKryt10.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMinKryt10.setEditable(false);
+		textMinKryt10.setColumns(10);
+		textMinKryt10.setBounds(287, 422, 78, 20);
+		contentPane.add(textMinKryt10);
 		
 		JLabel lblMin = new JLabel("Min *1.1");
 		lblMin.setBounds(287, 407, 78, 14);
 		contentPane.add(lblMin);
 		
-		textField_5 = new JTextField();
-		textField_5.setText("0");
-		textField_5.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_5.setEditable(false);
-		textField_5.setColumns(10);
-		textField_5.setBounds(392, 301, 78, 20);
-		contentPane.add(textField_5);
+		textMaxDmgMoba = new JTextField();
+		textMaxDmgMoba.setText("0");
+		textMaxDmgMoba.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMaxDmgMoba.setEditable(false);
+		textMaxDmgMoba.setColumns(10);
+		textMaxDmgMoba.setBounds(392, 301, 78, 20);
+		contentPane.add(textMaxDmgMoba);
 		
 		JLabel lblMaxDmgMoba = new JLabel("Max dmg moba");
 		lblMaxDmgMoba.setBounds(392, 286, 78, 14);
 		contentPane.add(lblMaxDmgMoba);
 		
-		textField_6 = new JTextField();
-		textField_6.setText("0");
-		textField_6.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_6.setEditable(false);
-		textField_6.setColumns(10);
-		textField_6.setBounds(392, 341, 78, 20);
-		contentPane.add(textField_6);
+		textMaxAtakGracza = new JTextField();
+		textMaxAtakGracza.setText("0");
+		textMaxAtakGracza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMaxAtakGracza.setEditable(false);
+		textMaxAtakGracza.setColumns(10);
+		textMaxAtakGracza.setBounds(392, 341, 78, 20);
+		contentPane.add(textMaxAtakGracza);
 		
 		JLabel lblMaxAtakGracza = new JLabel("Max atak gracza");
 		lblMaxAtakGracza.setBounds(391, 326, 79, 14);
 		contentPane.add(lblMaxAtakGracza);
 		
-		textField_7 = new JTextField();
-		textField_7.setText("0");
-		textField_7.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_7.setEditable(false);
-		textField_7.setColumns(10);
-		textField_7.setBounds(392, 382, 78, 20);
-		contentPane.add(textField_7);
+		textSzansaUnikuGracza = new JTextField();
+		textSzansaUnikuGracza.setText("0");
+		textSzansaUnikuGracza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textSzansaUnikuGracza.setEditable(false);
+		textSzansaUnikuGracza.setColumns(10);
+		textSzansaUnikuGracza.setBounds(392, 382, 78, 20);
+		contentPane.add(textSzansaUnikuGracza);
 		
 		JLabel lblSzansaUnikuGracza = new JLabel("Szansa uniku gracza");
 		lblSzansaUnikuGracza.setBounds(373, 367, 97, 14);
 		contentPane.add(lblSzansaUnikuGracza);
 		
-		textField_8 = new JTextField();
-		textField_8.setText("0");
-		textField_8.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_8.setEditable(false);
-		textField_8.setColumns(10);
-		textField_8.setBounds(392, 463, 78, 20);
-		contentPane.add(textField_8);
+		textMaxKryt15 = new JTextField();
+		textMaxKryt15.setText("0");
+		textMaxKryt15.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMaxKryt15.setEditable(false);
+		textMaxKryt15.setColumns(10);
+		textMaxKryt15.setBounds(392, 463, 78, 20);
+		contentPane.add(textMaxKryt15);
 		
 		JLabel lblMax_1 = new JLabel("Max *1.15");
 		lblMax_1.setBounds(392, 448, 78, 14);
 		contentPane.add(lblMax_1);
 		
-		textField_9 = new JTextField();
-		textField_9.setText("0");
-		textField_9.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_9.setEditable(false);
-		textField_9.setColumns(10);
-		textField_9.setBounds(392, 422, 78, 20);
-		contentPane.add(textField_9);
+		textMinKryt15 = new JTextField();
+		textMinKryt15.setText("0");
+		textMinKryt15.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMinKryt15.setEditable(false);
+		textMinKryt15.setColumns(10);
+		textMinKryt15.setBounds(392, 422, 78, 20);
+		contentPane.add(textMinKryt15);
 		
 		JLabel lblMin_1 = new JLabel("Min *1.15");
 		lblMin_1.setBounds(392, 407, 78, 14);
 		contentPane.add(lblMin_1);
 		
-		textField_10 = new JTextField();
-		textField_10.setText("0");
-		textField_10.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_10.setEditable(false);
-		textField_10.setColumns(10);
-		textField_10.setBounds(494, 463, 78, 20);
-		contentPane.add(textField_10);
+		textMaxKryt20 = new JTextField();
+		textMaxKryt20.setText("0");
+		textMaxKryt20.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMaxKryt20.setEditable(false);
+		textMaxKryt20.setColumns(10);
+		textMaxKryt20.setBounds(494, 463, 78, 20);
+		contentPane.add(textMaxKryt20);
 		
 		JLabel lblMax_2 = new JLabel("Max *1.2");
 		lblMax_2.setBounds(494, 448, 78, 14);
 		contentPane.add(lblMax_2);
 		
-		textField_11 = new JTextField();
-		textField_11.setText("0");
-		textField_11.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_11.setEditable(false);
-		textField_11.setColumns(10);
-		textField_11.setBounds(494, 422, 78, 20);
-		contentPane.add(textField_11);
+		textMinKryt20 = new JTextField();
+		textMinKryt20.setText("0");
+		textMinKryt20.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMinKryt20.setEditable(false);
+		textMinKryt20.setColumns(10);
+		textMinKryt20.setBounds(494, 422, 78, 20);
+		contentPane.add(textMinKryt20);
 		
 		JLabel lblMin_2 = new JLabel("Min *1.2");
 		lblMin_2.setBounds(494, 407, 78, 14);
 		contentPane.add(lblMin_2);
 		
-		textField_12 = new JTextField();
-		textField_12.setText("0");
-		textField_12.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_12.setEditable(false);
-		textField_12.setColumns(10);
-		textField_12.setBounds(591, 463, 78, 20);
-		contentPane.add(textField_12);
+		textMaxKryt30 = new JTextField();
+		textMaxKryt30.setText("0");
+		textMaxKryt30.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMaxKryt30.setEditable(false);
+		textMaxKryt30.setColumns(10);
+		textMaxKryt30.setBounds(591, 463, 78, 20);
+		contentPane.add(textMaxKryt30);
 		
 		JLabel lblMax_3 = new JLabel("Max *1.3");
 		lblMax_3.setBounds(591, 448, 78, 14);
 		contentPane.add(lblMax_3);
 		
-		textField_13 = new JTextField();
-		textField_13.setText("0");
-		textField_13.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_13.setEditable(false);
-		textField_13.setColumns(10);
-		textField_13.setBounds(591, 422, 78, 20);
-		contentPane.add(textField_13);
+		textMinKryt30 = new JTextField();
+		textMinKryt30.setText("0");
+		textMinKryt30.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMinKryt30.setEditable(false);
+		textMinKryt30.setColumns(10);
+		textMinKryt30.setBounds(591, 422, 78, 20);
+		contentPane.add(textMinKryt30);
 		
 		JLabel lblMin_3 = new JLabel("Min *1.3");
 		lblMin_3.setBounds(591, 407, 78, 14);
 		contentPane.add(lblMin_3);
 		
-		textField_14 = new JTextField();
-		textField_14.setText("0");
-		textField_14.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_14.setEditable(false);
-		textField_14.setColumns(10);
-		textField_14.setBounds(689, 463, 78, 20);
-		contentPane.add(textField_14);
+		textMaxKryt40 = new JTextField();
+		textMaxKryt40.setText("0");
+		textMaxKryt40.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMaxKryt40.setEditable(false);
+		textMaxKryt40.setColumns(10);
+		textMaxKryt40.setBounds(689, 463, 78, 20);
+		contentPane.add(textMaxKryt40);
 		
 		JLabel lblMax_4 = new JLabel("Max *1.4");
 		lblMax_4.setBounds(689, 448, 78, 14);
 		contentPane.add(lblMax_4);
 		
-		textField_15 = new JTextField();
-		textField_15.setText("0");
-		textField_15.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_15.setEditable(false);
-		textField_15.setColumns(10);
-		textField_15.setBounds(689, 422, 78, 20);
-		contentPane.add(textField_15);
+		textMinKryt40 = new JTextField();
+		textMinKryt40.setText("0");
+		textMinKryt40.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMinKryt40.setEditable(false);
+		textMinKryt40.setColumns(10);
+		textMinKryt40.setBounds(689, 422, 78, 20);
+		contentPane.add(textMinKryt40);
 		
 		JLabel lblMin_4 = new JLabel("Min *1.4");
 		lblMin_4.setBounds(689, 407, 78, 14);
 		contentPane.add(lblMin_4);
 		
-		textField_16 = new JTextField();
-		textField_16.setText("0");
-		textField_16.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_16.setEditable(false);
-		textField_16.setColumns(10);
-		textField_16.setBounds(786, 463, 78, 20);
-		contentPane.add(textField_16);
+		textMaxKryt50 = new JTextField();
+		textMaxKryt50.setText("0");
+		textMaxKryt50.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMaxKryt50.setEditable(false);
+		textMaxKryt50.setColumns(10);
+		textMaxKryt50.setBounds(786, 463, 78, 20);
+		contentPane.add(textMaxKryt50);
 		
 		JLabel lblMax_5 = new JLabel("Max *1.5");
 		lblMax_5.setBounds(786, 448, 78, 14);
 		contentPane.add(lblMax_5);
 		
-		textField_17 = new JTextField();
-		textField_17.setText("0");
-		textField_17.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_17.setEditable(false);
-		textField_17.setColumns(10);
-		textField_17.setBounds(786, 422, 78, 20);
-		contentPane.add(textField_17);
+		textMinKryt50 = new JTextField();
+		textMinKryt50.setText("0");
+		textMinKryt50.setHorizontalAlignment(SwingConstants.RIGHT);
+		textMinKryt50.setEditable(false);
+		textMinKryt50.setColumns(10);
+		textMinKryt50.setBounds(786, 422, 78, 20);
+		contentPane.add(textMinKryt50);
 		
 		JLabel lblMin_5 = new JLabel("Min *1.5");
 		lblMin_5.setBounds(786, 407, 78, 14);
 		contentPane.add(lblMin_5);
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setName("");
-		spinner_1.setBounds(559, 15, 78, 20);
-		contentPane.add(spinner_1);
+		JSpinner spinnerLiczbaSymulacji = new JSpinner();
+		spinnerLiczbaSymulacji.setModel(new SpinnerNumberModel(new Integer(10000), new Integer(1), null, new Integer(1)));
+		spinnerLiczbaSymulacji.setName("");
+		spinnerLiczbaSymulacji.setBounds(559, 15, 78, 20);
+		contentPane.add(spinnerLiczbaSymulacji);
 		
 		JLabel lblLiczbaSymulacji = new JLabel("Liczba symulacji");
 		lblLiczbaSymulacji.setBounds(559, 0, 78, 14);
 		contentPane.add(lblLiczbaSymulacji);
 		
-		JSpinner spinner_2 = new JSpinner();
-		spinner_2.setName("");
-		spinner_2.setBounds(559, 52, 78, 20);
-		contentPane.add(spinner_2);
+		JSpinner spinnerWalkiPodRzad = new JSpinner();
+		spinnerWalkiPodRzad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spinnerWalkiPodRzad.setName("");
+		spinnerWalkiPodRzad.setBounds(559, 52, 78, 20);
+		contentPane.add(spinnerWalkiPodRzad);
 		
 		JLabel lblWalkiPodRzd = new JLabel("Walki pod rząd");
 		lblWalkiPodRzd.setBounds(559, 37, 78, 14);
@@ -602,25 +593,25 @@ public class Okno extends JFrame
 		lblStaaUniku.setBounds(519, 367, 53, 14);
 		contentPane.add(lblStaaUniku);
 		
-		textField_18 = new JTextField();
-		textField_18.setText("0");
-		textField_18.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_18.setEditable(false);
-		textField_18.setColumns(10);
-		textField_18.setBounds(494, 382, 78, 20);
-		contentPane.add(textField_18);
+		textStalaUniku = new JTextField();
+		textStalaUniku.setText("0");
+		textStalaUniku.setHorizontalAlignment(SwingConstants.RIGHT);
+		textStalaUniku.setEditable(false);
+		textStalaUniku.setColumns(10);
+		textStalaUniku.setBounds(494, 382, 78, 20);
+		contentPane.add(textStalaUniku);
 		
 		JLabel lblSzansaNaTk = new JLabel("Szansa na TK");
 		lblSzansaNaTk.setBounds(605, 367, 64, 14);
 		contentPane.add(lblSzansaNaTk);
 		
-		textField_19 = new JTextField();
-		textField_19.setText("0");
-		textField_19.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_19.setEditable(false);
-		textField_19.setColumns(10);
-		textField_19.setBounds(591, 382, 78, 20);
-		contentPane.add(textField_19);
+		textSzansaTk = new JTextField();
+		textSzansaTk.setText("0");
+		textSzansaTk.setHorizontalAlignment(SwingConstants.RIGHT);
+		textSzansaTk.setEditable(false);
+		textSzansaTk.setColumns(10);
+		textSzansaTk.setBounds(591, 382, 78, 20);
+		contentPane.add(textSzansaTk);
 		
 		textField_20 = new JTextField();
 		textField_20.setText("0");
@@ -658,6 +649,30 @@ public class Okno extends JFrame
 		lblredniKosztPoziomu.setBounds(537, 175, 100, 14);
 		contentPane.add(lblredniKosztPoziomu);
 		
+		JLabel lblTrafienie = new JLabel("Trafienie gracza");
+		lblTrafienie.setBounds(23, 216, 78, 14);
+		contentPane.add(lblTrafienie);
+		
+		textField = new JTextField();
+		textField.setText("0");
+		textField.setHorizontalAlignment(SwingConstants.RIGHT);
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBounds(23, 231, 78, 20);
+		contentPane.add(textField);
+		
+		JLabel lblZdolnoUnikuGracza = new JLabel("Zdolność uniku gracza");
+		lblZdolnoUnikuGracza.setBounds(111, 216, 112, 14);
+		contentPane.add(lblZdolnoUnikuGracza);
+		
+		textField_1 = new JTextField();
+		textField_1.setText("0");
+		textField_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(111, 231, 78, 20);
+		contentPane.add(textField_1);
+		
 //		JSpinner []spinner = new JSpinner[30];
 //		
 //		for(int i=0; i<30; i++) {
@@ -682,7 +697,28 @@ public class Okno extends JFrame
 			public void actionPerformed(ActionEvent arg0) {
 				
 				Fight fight = new Fight();
-				fight.walka(24, textArea);
+				fight.walka(24, textArea, m);
+			}
+		});
+		
+
+		spinnerLevelMoba.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				
+				//double temp = 0;
+				
+				m.load(m, (Integer)spinnerLevelMoba.getValue());
+				
+				textAtakMoba.setText(m.getDmg()+"");
+				textObronaMoba.setText(m.getObrona()+"");
+				textTrafienieUnikMoba.setText(m.getZrecznosc()+"");
+				textHpMoba.setText(m.getHp()+"");
+				textSzybkoscMoba.setText(m.getSzybkosc()+"");
+//				temp = m.getDmg()+1;
+//				textMinDmgMoba.setText(temp+"");
+				
+				//TODO coś tu się dziwnego dzieje na zmianie z 63 na 64 moba
+				
 			}
 		});
 		

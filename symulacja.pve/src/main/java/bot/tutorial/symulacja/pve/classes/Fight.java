@@ -4,12 +4,12 @@ import javax.swing.JTextArea;
 
 public class Fight {
 	
-	public void walka(int ile, JTextArea jTextArea) {
+	public void walka(int ile, JTextArea jTextArea, Enemy e2) {
 		
 		Enemy e1 = new Player();
-		Enemy e2 = new Monster();
 		
-		e2.load(e2, 100);
+		int hpGracza = e1.getHp();
+		int hpMoba = e2.getHp();
 		
 		Results wyniki = new Results();
 		
@@ -21,7 +21,9 @@ public class Fight {
 		}
 		if(e1.getHp()>0 && e2.getHp()>0) wyniki.setRemisy(wyniki.getRemisy()+1);
 		
-		wyniki.show();
+		e1.setHp(hpMoba);
+		e2.setHp(hpMoba);
 		
+		wyniki.show();
 	}
 }

@@ -34,8 +34,8 @@ public class Monster extends Enemy implements Loadable {
 			System.out.println("Nie można wczytać pliku");
 		}
 		
-		int i=1;
-		while(i<=lvl) 
+		
+		while(skan.hasNext()) 
 		{
 				this.setLevel(skan.nextInt());
 				this.setHp(skan.nextInt());
@@ -46,7 +46,11 @@ public class Monster extends Enemy implements Loadable {
 				skan.next();
 				skan.next();
 				
-				if(lvl==this.getLevel()) break;
+				
+				if(lvl==this.getLevel()) {
+					
+					break;
+				}
 				else {
 					this.setLevel(0);
 					this.setHp(0);
@@ -54,9 +58,10 @@ public class Monster extends Enemy implements Loadable {
 					this.setDmg(0);
 					this.setSzybkosc(0);
 					this.setObrona(0);
+					
 				}
-				i++;
-		} 
+					
+		}
 		
 		System.out.println(this.getLevel()+" "+this.getHp()+" "+this.getZrecznosc()+" "+
 				this.getDmg()+" "+this.getSzybkosc()+" "+this.getObrona());
