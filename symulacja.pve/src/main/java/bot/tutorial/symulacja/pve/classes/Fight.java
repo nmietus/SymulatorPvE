@@ -19,7 +19,7 @@ public class Fight {
 		}
 		if(e1.getHp()>0 && e2.getHp()>0) wyniki.setRemisy(wyniki.getRemisy()+1);
 		
-		e1.setHp(hpMoba);
+		e1.setHp(hpGracza);
 		e2.setHp(hpMoba);
 		
 		wyniki.show();

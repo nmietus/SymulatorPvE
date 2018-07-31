@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import bot.tutorial.symulacja.pve.classes.DerivativePlayer;
 import bot.tutorial.symulacja.pve.classes.Enemy;
 import bot.tutorial.symulacja.pve.classes.Fight;
 import bot.tutorial.symulacja.pve.classes.Loadable;
@@ -74,9 +75,25 @@ public class Okno extends JFrame
 	private JTextField textField_21;
 	private JTextField textField_22;
 	private JSpinner spinnerLevelMoba;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textTrafienieGracza;
+	private JTextField textZdolnoscUnikuGracza;
 	private JSpinner spinnerLevel;
+	private JSpinner spinnerUnik;
+	private JSpinner spinnerUb;
+	private JSpinner spinnerSzybkosc;
+	private JSpinner spinnerSzybkoscBroni;
+	private JSpinner spinnerHp;
+	private JSpinner spinnerBron;
+	private JSpinner spinnerSila;
+	private JSpinner spinnerZrecznosc;
+	private JSpinner spinnerInteligencja;
+	private JSpinner spinnerWampiryzm;
+	private JSpinner spinnerZlodziejstwo;
+	private JSpinner spinnerUnikZEq;
+	private JSpinner spinnerKaraDoUniku;
+	private JTextField textObronaGracza;
+	private JSpinner spinnerWytrzymalosc;
+	private JSpinner spinnerObronaZEq;
 
 	/**
 	 * Launch the application.
@@ -133,12 +150,7 @@ public class Okno extends JFrame
 		textArea.setEditable(false);
 		
 		spinnerLevel = new JSpinner();
-		spinnerLevel.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {
-				
-				p.setLevel((Integer)spinnerLevel.getValue());
-			}
-		});
+		spinnerLevel.setModel(new SpinnerNumberModel(new Integer(1), null, null, new Integer(1)));
 		spinnerLevel.setName("");
 		spinnerLevel.setBounds(111, 26, 78, 20);
 		contentPane.add(spinnerLevel);
@@ -147,7 +159,8 @@ public class Okno extends JFrame
 		lblLevel.setBounds(111, 11, 46, 14);
 		contentPane.add(lblLevel);
 		
-		JSpinner spinnerHp = new JSpinner();
+		spinnerHp = new JSpinner();
+		spinnerHp.setModel(new SpinnerNumberModel(new Integer(4), new Integer(4), null, new Integer(1)));
 		spinnerHp.setName("");
 		spinnerHp.setBounds(199, 26, 78, 20);
 		contentPane.add(spinnerHp);
@@ -156,16 +169,17 @@ public class Okno extends JFrame
 		labelHp.setBounds(199, 11, 46, 14);
 		contentPane.add(labelHp);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setName("");
-		spinner.setBounds(111, 72, 78, 20);
-		contentPane.add(spinner);
+		spinnerSila = new JSpinner();
+		spinnerSila.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
+		spinnerSila.setName("");
+		spinnerSila.setBounds(111, 72, 78, 20);
+		contentPane.add(spinnerSila);
 		
 		JLabel lblSila = new JLabel("Siła");
 		lblSila.setBounds(111, 57, 78, 14);
 		contentPane.add(lblSila);
 		
-		JSpinner spinnerBron = new JSpinner();
+		spinnerBron = new JSpinner();
 		spinnerBron.setName("");
 		spinnerBron.setBounds(23, 72, 78, 20);
 		contentPane.add(spinnerBron);
@@ -174,7 +188,8 @@ public class Okno extends JFrame
 		labelBron.setBounds(23, 57, 78, 14);
 		contentPane.add(labelBron);
 		
-		JSpinner spinnerZrecznosc = new JSpinner();
+		spinnerZrecznosc = new JSpinner();
+		spinnerZrecznosc.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerZrecznosc.setName("");
 		spinnerZrecznosc.setBounds(199, 72, 78, 20);
 		contentPane.add(spinnerZrecznosc);
@@ -183,7 +198,8 @@ public class Okno extends JFrame
 		lblZrecznosc.setBounds(199, 57, 78, 14);
 		contentPane.add(lblZrecznosc);
 		
-		JSpinner spinnerInteligencja = new JSpinner();
+		spinnerInteligencja = new JSpinner();
+		spinnerInteligencja.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerInteligencja.setName("");
 		spinnerInteligencja.setBounds(287, 72, 78, 20);
 		contentPane.add(spinnerInteligencja);
@@ -192,7 +208,8 @@ public class Okno extends JFrame
 		lblInteligencja.setBounds(287, 57, 78, 14);
 		contentPane.add(lblInteligencja);
 		
-		JSpinner spinnerObronaZEq = new JSpinner();
+		spinnerObronaZEq = new JSpinner();
+		spinnerObronaZEq.setModel(new SpinnerNumberModel(new Integer(0), null, null, new Integer(1)));
 		spinnerObronaZEq.setName("");
 		spinnerObronaZEq.setBounds(23, 109, 78, 20);
 		contentPane.add(spinnerObronaZEq);
@@ -201,7 +218,8 @@ public class Okno extends JFrame
 		lblObronaZEq.setBounds(23, 94, 78, 14);
 		contentPane.add(lblObronaZEq);
 		
-		JSpinner spinnerWytrzymalosc = new JSpinner();
+		spinnerWytrzymalosc = new JSpinner();
+		spinnerWytrzymalosc.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerWytrzymalosc.setName("");
 		spinnerWytrzymalosc.setBounds(111, 109, 78, 20);
 		contentPane.add(spinnerWytrzymalosc);
@@ -219,7 +237,8 @@ public class Okno extends JFrame
 		lblSilaWoli.setBounds(199, 94, 78, 14);
 		contentPane.add(lblSilaWoli);
 		
-		JSpinner spinnerSzybkosc = new JSpinner();
+		spinnerSzybkosc = new JSpinner();
+		spinnerSzybkosc.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerSzybkosc.setName("");
 		spinnerSzybkosc.setBounds(287, 109, 78, 20);
 		contentPane.add(spinnerSzybkosc);
@@ -228,7 +247,8 @@ public class Okno extends JFrame
 		lblSzybkosc.setBounds(287, 94, 78, 14);
 		contentPane.add(lblSzybkosc);
 		
-		JSpinner spinnerUb = new JSpinner();
+		spinnerUb = new JSpinner();
+		spinnerUb.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerUb.setName("");
 		spinnerUb.setBounds(111, 148, 78, 20);
 		contentPane.add(spinnerUb);
@@ -237,16 +257,17 @@ public class Okno extends JFrame
 		lblUb.setBounds(111, 133, 78, 14);
 		contentPane.add(lblUb);
 		
-		JSpinner spinnerSzybkoscZEq = new JSpinner();
-		spinnerSzybkoscZEq.setName("");
-		spinnerSzybkoscZEq.setBounds(23, 148, 78, 20);
-		contentPane.add(spinnerSzybkoscZEq);
+		spinnerSzybkoscBroni = new JSpinner();
+		spinnerSzybkoscBroni.setName("");
+		spinnerSzybkoscBroni.setBounds(23, 148, 78, 20);
+		contentPane.add(spinnerSzybkoscBroni);
 		
-		JLabel lblSzybkoscZEq = new JLabel("Szybkość z eq");
-		lblSzybkoscZEq.setBounds(23, 133, 78, 14);
-		contentPane.add(lblSzybkoscZEq);
+		JLabel lblSzybkoscBroni = new JLabel("Szybkość broni");
+		lblSzybkoscBroni.setBounds(23, 133, 78, 14);
+		contentPane.add(lblSzybkoscBroni);
 		
-		JSpinner spinnerUnik = new JSpinner();
+		spinnerUnik = new JSpinner();
+		spinnerUnik.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerUnik.setName("");
 		spinnerUnik.setBounds(199, 148, 78, 20);
 		contentPane.add(spinnerUnik);
@@ -255,7 +276,8 @@ public class Okno extends JFrame
 		lblUnik.setBounds(199, 133, 78, 14);
 		contentPane.add(lblUnik);
 		
-		JSpinner spinnerKaraDoUniku = new JSpinner();
+		spinnerKaraDoUniku = new JSpinner();
+		spinnerKaraDoUniku.setModel(new SpinnerNumberModel(0.0, null, 100.0, 1.0));
 		spinnerKaraDoUniku.setName("");
 		spinnerKaraDoUniku.setBounds(287, 148, 78, 20);
 		contentPane.add(spinnerKaraDoUniku);
@@ -264,7 +286,7 @@ public class Okno extends JFrame
 		lblKaraDoUniku.setBounds(287, 133, 78, 14);
 		contentPane.add(lblKaraDoUniku);
 		
-		JSpinner spinnerUnikZEq = new JSpinner();
+		spinnerUnikZEq = new JSpinner();
 		spinnerUnikZEq.setName("");
 		spinnerUnikZEq.setBounds(23, 185, 78, 20);
 		contentPane.add(spinnerUnikZEq);
@@ -273,7 +295,8 @@ public class Okno extends JFrame
 		lblUnikZEq.setBounds(23, 170, 78, 14);
 		contentPane.add(lblUnikZEq);
 		
-		JSpinner spinnerWampiryzm = new JSpinner();
+		spinnerWampiryzm = new JSpinner();
+		spinnerWampiryzm.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerWampiryzm.setAutoscrolls(true);
 		spinnerWampiryzm.setName("");
 		spinnerWampiryzm.setBounds(111, 185, 78, 20);
@@ -283,7 +306,8 @@ public class Okno extends JFrame
 		lblWampiryzm.setBounds(111, 170, 78, 14);
 		contentPane.add(lblWampiryzm);
 		
-		JSpinner spinnerZlodziejstwo = new JSpinner();
+		spinnerZlodziejstwo = new JSpinner();
+		spinnerZlodziejstwo.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerZlodziejstwo.setName("");
 		spinnerZlodziejstwo.setBounds(199, 185, 78, 20);
 		contentPane.add(spinnerZlodziejstwo);
@@ -611,7 +635,7 @@ public class Okno extends JFrame
 		contentPane.add(textStalaUniku);
 		
 		JLabel lblSzansaNaTk = new JLabel("Szansa na TK");
-		lblSzansaNaTk.setBounds(605, 367, 64, 14);
+		lblSzansaNaTk.setBounds(591, 367, 78, 14);
 		contentPane.add(lblSzansaNaTk);
 		
 		textSzansaTk = new JTextField();
@@ -662,25 +686,37 @@ public class Okno extends JFrame
 		lblTrafienie.setBounds(23, 216, 78, 14);
 		contentPane.add(lblTrafienie);
 		
-		textField = new JTextField();
-		textField.setText("0");
-		textField.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(23, 231, 78, 20);
-		contentPane.add(textField);
+		textTrafienieGracza = new JTextField();
+		textTrafienieGracza.setText("0");
+		textTrafienieGracza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textTrafienieGracza.setEditable(false);
+		textTrafienieGracza.setColumns(10);
+		textTrafienieGracza.setBounds(23, 231, 78, 20);
+		contentPane.add(textTrafienieGracza);
 		
 		JLabel lblZdolnoUnikuGracza = new JLabel("Zdolność uniku gracza");
 		lblZdolnoUnikuGracza.setBounds(111, 216, 112, 14);
 		contentPane.add(lblZdolnoUnikuGracza);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("0");
-		textField_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBounds(111, 231, 78, 20);
-		contentPane.add(textField_1);
+		textZdolnoscUnikuGracza = new JTextField();
+		textZdolnoscUnikuGracza.setText("0");
+		textZdolnoscUnikuGracza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textZdolnoscUnikuGracza.setEditable(false);
+		textZdolnoscUnikuGracza.setColumns(10);
+		textZdolnoscUnikuGracza.setBounds(111, 231, 78, 20);
+		contentPane.add(textZdolnoscUnikuGracza);
+		
+		JLabel lblObronaGracza = new JLabel("Obrona gracza");
+		lblObronaGracza.setBounds(233, 216, 78, 14);
+		contentPane.add(lblObronaGracza);
+		
+		textObronaGracza = new JTextField();
+		textObronaGracza.setText("0");
+		textObronaGracza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textObronaGracza.setEditable(false);
+		textObronaGracza.setColumns(10);
+		textObronaGracza.setBounds(233, 231, 78, 20);
+		contentPane.add(textObronaGracza);
 		
 //		JSpinner []spinner = new JSpinner[30];
 //		
@@ -727,5 +763,117 @@ public class Okno extends JFrame
 			}
 		});
 		
+		spinnerLevel.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				
+				p.setLevel((Integer)spinnerLevel.getValue());
+				DerivativePlayer.przeliczSumeSzybkosci(p, spinnerSzybkosc, spinnerSzybkoscBroni);
+				DerivativePlayer.przeliczDmg(p, spinnerBron, spinnerSila, textMinAtakGracza, textMaxAtakGracza);
+				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerWampiryzm, textTrafienieGracza);
+				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
+						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+			}
+		});
+		
+		spinnerHp.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				p.setHp((Integer)spinnerHp.getValue());
+			}
+		});
+		
+		spinnerBron.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				DerivativePlayer.przeliczDmg(p, spinnerBron, spinnerSila, textMinAtakGracza, textMaxAtakGracza);
+			}
+		});
+		
+		spinnerSila.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				DerivativePlayer.przeliczDmg(p, spinnerBron, spinnerSila, textMinAtakGracza, textMaxAtakGracza);
+				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerWampiryzm, textTrafienieGracza);
+			}
+		});
+		
+		spinnerZrecznosc.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerWampiryzm, textTrafienieGracza);
+				DerivativePlayer.przeliczObrone(p, spinnerWytrzymalosc, spinnerZrecznosc, spinnerObronaZEq, textObronaGracza);
+			}
+		});
+		
+		spinnerInteligencja.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerWampiryzm, textTrafienieGracza);
+			}
+		});
+		
+		spinnerWytrzymalosc.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				DerivativePlayer.przeliczObrone(p, spinnerWytrzymalosc, spinnerZrecznosc, spinnerObronaZEq, textObronaGracza);
+			}
+		});
+		
+		spinnerUnik.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				
+				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
+						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+				DerivativePlayer.przeliczStalaUniku(p, spinnerUnik, textStalaUniku);
+			}
+		});
+		
+		spinnerUb.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				DerivativePlayer.przeliczSzanseTk(p, spinnerUb, textSzansaTk);
+				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerWampiryzm, textTrafienieGracza);
+			}
+		});
+		
+		spinnerSzybkosc.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
+						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+				DerivativePlayer.przeliczSumeSzybkosci(p, spinnerSzybkosc, spinnerSzybkoscBroni);
+			}
+		});
+		
+		spinnerObronaZEq.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				DerivativePlayer.przeliczObrone(p, spinnerWytrzymalosc, spinnerZrecznosc, spinnerObronaZEq, textObronaGracza);
+			}
+		});
+		
+		spinnerSzybkoscBroni.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
+						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+				DerivativePlayer.przeliczSumeSzybkosci(p, spinnerSzybkosc, spinnerSzybkoscBroni);
+			}
+		});
+		
+		spinnerKaraDoUniku.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
+						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+			}
+		});
+		
+		spinnerZlodziejstwo.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
+						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+			}
+		});
 	}
 }
