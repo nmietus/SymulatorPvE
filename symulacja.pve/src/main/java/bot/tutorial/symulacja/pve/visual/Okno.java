@@ -11,6 +11,7 @@ import bot.tutorial.symulacja.pve.classes.Enemy;
 import bot.tutorial.symulacja.pve.classes.Fight;
 import bot.tutorial.symulacja.pve.classes.Loadable;
 import bot.tutorial.symulacja.pve.classes.Monster;
+import bot.tutorial.symulacja.pve.classes.Player;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -36,6 +37,7 @@ public class Okno extends JFrame
 	private JTextArea textArea;
 	private JScrollPane scrollPane;
 	
+	private Enemy p = new Player();
 	private Enemy m = new Monster();
 	
 	private ArrayList kontrolkiGracza;
@@ -74,6 +76,7 @@ public class Okno extends JFrame
 	private JSpinner spinnerLevelMoba;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JSpinner spinnerLevel;
 
 	/**
 	 * Launch the application.
@@ -129,7 +132,13 @@ public class Okno extends JFrame
 		scrollPane.setViewportView(textArea);
 		textArea.setEditable(false);
 		
-		JSpinner spinnerLevel = new JSpinner();
+		spinnerLevel = new JSpinner();
+		spinnerLevel.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				
+				p.setLevel((Integer)spinnerLevel.getValue());
+			}
+		});
 		spinnerLevel.setName("");
 		spinnerLevel.setBounds(111, 26, 78, 20);
 		contentPane.add(spinnerLevel);
@@ -697,7 +706,7 @@ public class Okno extends JFrame
 			public void actionPerformed(ActionEvent arg0) {
 				
 				Fight fight = new Fight();
-				fight.walka(24, textArea, m);
+				fight.walka(24, textArea, p, m);
 			}
 		});
 		
@@ -711,13 +720,9 @@ public class Okno extends JFrame
 				
 				textAtakMoba.setText(m.getDmg()+"");
 				textObronaMoba.setText(m.getObrona()+"");
-				textTrafienieUnikMoba.setText(m.getZrecznosc()+"");
+				textTrafienieUnikMoba.setText(m.getTrafienie()+"");
 				textHpMoba.setText(m.getHp()+"");
-				textSzybkoscMoba.setText(m.getSzybkosc()+"");
-//				temp = m.getDmg()+1;
-//				textMinDmgMoba.setText(temp+"");
-				
-				//TODO coś tu się dziwnego dzieje na zmianie z 63 na 64 moba
+				textSzybkoscMoba.setText(m.getSumaSzybkosci()+"");
 				
 			}
 		});

@@ -11,13 +11,36 @@ public class Enemy implements Fighting, Loadable {
 	private int level;
 	private int hp;
 	private double dmg;
-	private double szybkosc;
-	private double zrecznosc;
+	private double sumaSzybkosci;
 	private double obrona;
-	private double Ub;
-	private double unik;
+	private int stalaUniku;
 	private double trafienie;
+	private int szansaTk;
 	private double zdolnoscUniku;
+	
+	public double getSumaSzybkosci() {
+		return sumaSzybkosci;
+	}
+
+	public void setSumaSzybkosci(double sumaSzybkosci) {
+		this.sumaSzybkosci = sumaSzybkosci;
+	}
+	
+	public int getSzansaTk() {
+		return szansaTk;
+	}
+
+	public void setSzansaTk(int szansaTk) {
+		this.szansaTk = szansaTk;
+	}
+
+	public double getStalaUniku() {
+		return stalaUniku;
+	}
+
+	public void setStalaUniku(int stalaUniku) {
+		this.stalaUniku = stalaUniku;
+	}
 	
 	public double getTrafienie() {
 		return trafienie;
@@ -33,22 +56,6 @@ public class Enemy implements Fighting, Loadable {
 
 	public void setZdolnoscUniku(double zdolnoscUniku) {
 		this.zdolnoscUniku = zdolnoscUniku;
-	}
-
-	public double getUb() {
-		return Ub;
-	}
-
-	public void setUb(double ub) {
-		Ub = ub;
-	}
-
-	public double getUnik() {
-		return unik;
-	}
-
-	public void setUnik(double unik) {
-		this.unik = unik;
 	}
 
 	public int getLevel() {
@@ -75,22 +82,6 @@ public class Enemy implements Fighting, Loadable {
 		this.dmg = dmg;
 	}
 
-	public double getSzybkosc() {
-		return szybkosc;
-	}
-
-	public void setSzybkosc(double szybkosc) {
-		this.szybkosc = szybkosc;
-	}
-
-	public double getZrecznosc() {
-		return zrecznosc;
-	}
-
-	public void setZrecznosc(double zrecznosc) {
-		this.zrecznosc = zrecznosc;
-	}
-
 	public double getObrona() {
 		return obrona;
 	}
@@ -103,7 +94,8 @@ public class Enemy implements Fighting, Loadable {
 		//this.getDmg()+Random.ge
 		Random losuj = new Random();
 		
-		return this.getDmg()+1+losuj.nextInt(this.getLevel()*5);
+		return (this.getDmg()+1+losuj.nextInt(this.getLevel()*5))
+		*Tk.mnoznik(this.getSzansaTk());
 	}
 
 	public void load(Enemy e) {

@@ -10,6 +10,8 @@ public class Monster extends Enemy implements Loadable {
 	public Monster() {
 		super();
 		miasto = true;
+		this.setStalaUniku(1);
+		this.setSzansaTk(0);
 	}
 
 	public boolean isMiasto() {
@@ -39,9 +41,10 @@ public class Monster extends Enemy implements Loadable {
 		{
 				this.setLevel(skan.nextInt());
 				this.setHp(skan.nextInt());
-				this.setZrecznosc(skan.nextDouble());
+				this.setTrafienie(skan.nextDouble());
+				this.setZdolnoscUniku(this.getTrafienie());		//tego nie odczytujemy z pliku tylko przepisujemy z trafienia
 				this.setDmg(skan.nextDouble());
-				this.setSzybkosc(skan.nextDouble());
+				this.setSumaSzybkosci(skan.nextDouble());
 				this.setObrona(skan.nextDouble());
 				skan.next();
 				skan.next();
@@ -54,17 +57,18 @@ public class Monster extends Enemy implements Loadable {
 				else {
 					this.setLevel(0);
 					this.setHp(0);
-					this.setZrecznosc(0);
+					this.setTrafienie(0);
+					this.setZdolnoscUniku(0);
 					this.setDmg(0);
-					this.setSzybkosc(0);
+					this.setSumaSzybkosci(0);
 					this.setObrona(0);
 					
 				}
 					
 		}
 		
-		System.out.println(this.getLevel()+" "+this.getHp()+" "+this.getZrecznosc()+" "+
-				this.getDmg()+" "+this.getSzybkosc()+" "+this.getObrona());
+		System.out.println(this.getLevel()+" "+this.getHp()+" "+this.getTrafienie()+" "+
+				this.getDmg()+" "+this.getSumaSzybkosci()+" "+this.getObrona());
 		
 		skan.close();
 	}

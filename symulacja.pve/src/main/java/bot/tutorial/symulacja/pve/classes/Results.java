@@ -71,25 +71,25 @@ public class Results {
 	
 	public void addUnik(int unikniecia, Enemy e1) {
 		double wynik = 0;
-		double stala_uniku=0;
+//		double stala_uniku=0;
+//		
+//		if(e1.getUnik()<10) stala_uniku = 25;
+//		if(e1.getUnik()>=10 && e1.getUnik()<20) stala_uniku = 26;
+//		if(e1.getUnik()>=20 && e1.getUnik()<50) stala_uniku = 27;
+//		if(e1.getUnik()>=50 && e1.getUnik()<100) stala_uniku = 28;
+//		if(e1.getUnik()>=100 && e1.getUnik()<200) stala_uniku = 29;
+//		if(e1.getUnik()>=200 && e1.getUnik()<500) stala_uniku = 30;
+//		if(e1.getUnik()>=500 && e1.getUnik()<1000) stala_uniku = 32;
+//		if(e1.getUnik()>=1000 && e1.getUnik()<2000) stala_uniku = 34;
+//		if(e1.getUnik()>=2000 && e1.getUnik()<5000) stala_uniku = 36;
+//		if(e1.getUnik()>=5000 && e1.getUnik()<10000) stala_uniku = 38;
+//		if(e1.getUnik()>=10000 && e1.getUnik()<20000) stala_uniku = 40;
+//		if(e1.getUnik()>=20000 && e1.getUnik()<40000) stala_uniku = 45;
+//		if(e1.getUnik()>=40000 && e1.getUnik()<50000) stala_uniku = 50;
+//		if(e1.getUnik()>=50000 && e1.getUnik()<60000) stala_uniku = 55;
+//		if(e1.getUnik()>=60000) stala_uniku = 60;
 		
-		if(e1.getUnik()<10) stala_uniku = 25;
-		if(e1.getUnik()>=10 && e1.getUnik()<20) stala_uniku = 26;
-		if(e1.getUnik()>=20 && e1.getUnik()<50) stala_uniku = 27;
-		if(e1.getUnik()>=50 && e1.getUnik()<100) stala_uniku = 28;
-		if(e1.getUnik()>=100 && e1.getUnik()<200) stala_uniku = 29;
-		if(e1.getUnik()>=200 && e1.getUnik()<500) stala_uniku = 30;
-		if(e1.getUnik()>=500 && e1.getUnik()<1000) stala_uniku = 32;
-		if(e1.getUnik()>=1000 && e1.getUnik()<2000) stala_uniku = 34;
-		if(e1.getUnik()>=2000 && e1.getUnik()<5000) stala_uniku = 36;
-		if(e1.getUnik()>=5000 && e1.getUnik()<10000) stala_uniku = 38;
-		if(e1.getUnik()>=10000 && e1.getUnik()<20000) stala_uniku = 40;
-		if(e1.getUnik()>=20000 && e1.getUnik()<40000) stala_uniku = 45;
-		if(e1.getUnik()>=40000 && e1.getUnik()<50000) stala_uniku = 50;
-		if(e1.getUnik()>=50000 && e1.getUnik()<60000) stala_uniku = 55;
-		if(e1.getUnik()>=60000) stala_uniku = 60;
-		
-		wynik = 0.1*unikniecia/stala_uniku;
+		wynik = 0.1*unikniecia/e1.getStalaUniku();
 		
 		setUnik(this.getUniki()+wynik);
 	}

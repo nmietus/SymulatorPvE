@@ -5,7 +5,7 @@ import javax.swing.JTextArea;
 public class PerformAttack {
 	public static void wykonajAtakMoba(Enemy e1, Enemy e2, JTextArea jTextArea, Results wyniki)
 	{
-		if(Hit.Trafienie(e2.getZrecznosc(), e1.getUnik()))
+		if(Hit.Trafienie(e2.getTrafienie(), e1.getZdolnoscUniku()))
 		{
 			double temp_dmg = e2.attack()-e1.getObrona();
 			if(temp_dmg<0) temp_dmg=0;
@@ -22,7 +22,7 @@ public class PerformAttack {
 	
 	public static void wykonajAtakGracza(Enemy e1, Enemy e2, JTextArea jTextArea, Results wyniki)
 	{
-		if(Hit.Trafienie(e1.getTrafienie(), e2.getZrecznosc()))
+		if(Hit.Trafienie(e1.getTrafienie(), e2.getZdolnoscUniku()))
 		{
 			double temp_dmg = e1.attack()-e2.getObrona();
 			if(temp_dmg<0) temp_dmg=0;

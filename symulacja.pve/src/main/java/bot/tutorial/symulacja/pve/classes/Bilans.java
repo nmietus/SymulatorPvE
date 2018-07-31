@@ -5,7 +5,7 @@ public class Bilans {
 	public static int bilans_atakow(Enemy e1, Enemy e2) {
 		int numer = 0;
 		
-		double iloraz = e1.getSzybkosc()/e2.getSzybkosc();
+		double iloraz = e1.getSumaSzybkosci()/e2.getSumaSzybkosci();
 		
 		if(iloraz < 0.25) numer = 1;
 		else if(iloraz <= 0.33) numer = 2;

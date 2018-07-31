@@ -3,12 +3,12 @@ package bot.tutorial.symulacja.pve.classes;
 import java.util.Random;
 
 public class Tk {
-	public static double mnoznik(int szansa) 
+	public static double mnoznik(int d) 
 	{
 		double wynik = 1;
 		Random losuj = new Random();
 		
-		if(szansa<losuj.nextInt(100)) 					//losowanie czy kryt w ogóle będzie
+		if(d<losuj.nextInt(100)) 					//losowanie czy kryt w ogóle będzie
 		{
 			wynik = 1;
 		}

@@ -4,9 +4,7 @@ import javax.swing.JTextArea;
 
 public class Fight {
 	
-	public void walka(int ile, JTextArea jTextArea, Enemy e2) {
-		
-		Enemy e1 = new Player();
+	public void walka(int ile, JTextArea jTextArea, Enemy e1, Enemy e2) {
 		
 		int hpGracza = e1.getHp();
 		int hpMoba = e2.getHp();
