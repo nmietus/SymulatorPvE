@@ -17,10 +17,13 @@ public class DerivativePlayer {
 	
 	public static void przeliczObrone(Enemy e, JSpinner wytrzymalosc, JSpinner zrecznosc, JSpinner obronaEq, JTextField obronaGracza) {
 		double obrona = 0;
+		
 		obrona = (Double)wytrzymalosc.getValue()+(Double)zrecznosc.getValue()*0.1+(Integer)obronaEq.getValue();
 		
+		DecimalFormat df = new DecimalFormat("###.###");
+		
 		e.setObrona(obrona);
-		obronaGracza.setText(e.getObrona()+"");
+		obronaGracza.setText(df.format(e.getObrona())+"");
 	}
 
 	public static void przeliczTrafienie(Enemy e, JSpinner ub, JSpinner sila, JSpinner zrecznosc, JSpinner inteligencja, 
@@ -88,6 +91,45 @@ public class DerivativePlayer {
 		
 		e.setStalaUniku(stala_uniku);
 		stalaUniku.setText(e.getStalaUniku()+"");
+		
+	}
+	
+	public static void przeliczKryty(Enemy e, JTextField min10, JTextField max10, JTextField min15, JTextField max15,
+									JTextField min20, JTextField max20, JTextField min30, JTextField max30, 
+									JTextField min40, JTextField max40, JTextField min50, JTextField max50) {
+		double temp = 0;
+		DecimalFormat df = new DecimalFormat("###.###");
+		
+		temp = (e.getDmg()+1)*1.1;
+		min10.setText(df.format(temp)+"");
+		temp = (e.getDmg()+e.getLevel()*5)*1.1;
+		max10.setText(df.format(temp)+"");
+		
+		temp = (e.getDmg()+1)*1.15;
+		min15.setText(df.format(temp)+"");
+		temp = (e.getDmg()+e.getLevel()*5)*1.15;
+		max15.setText(df.format(temp)+"");
+		
+		temp = (e.getDmg()+1)*1.2;
+		min20.setText(df.format(temp)+"");
+		temp = (e.getDmg()+e.getLevel()*5)*1.2;
+		max20.setText(df.format(temp)+"");
+		
+		temp = (e.getDmg()+1)*1.3;
+		min30.setText(df.format(temp)+"");
+		temp = (e.getDmg()+e.getLevel()*5)*1.3;
+		max30.setText(df.format(temp)+"");
+		
+		temp = (e.getDmg()+1)*1.4;
+		min40.setText(df.format(temp)+"");
+		temp = (e.getDmg()+e.getLevel()*5)*1.4;
+		max40.setText(df.format(temp)+"");
+		
+		temp = (e.getDmg()+1)*1.5;
+		min50.setText(df.format(temp)+"");
+		temp = (e.getDmg()+e.getLevel()*5)*1.5;
+		max50.setText(df.format(temp)+"");
+		
 		
 	}
 }

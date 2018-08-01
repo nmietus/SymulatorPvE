@@ -17,6 +17,7 @@ public class Enemy implements Fighting, Loadable {
 	private double trafienie;
 	private int szansaTk;
 	private double zdolnoscUniku;
+	private boolean miasto;
 	
 	public double getSumaSzybkosci() {
 		return sumaSzybkosci;
@@ -106,6 +107,14 @@ public class Enemy implements Fighting, Loadable {
 	public void load(Enemy e, int lvl) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public boolean getMiasto() {
+		return miasto;
+	}
+
+	public void setMiasto(boolean miasto) {
+		this.miasto = miasto;
 	} 
 	
 }

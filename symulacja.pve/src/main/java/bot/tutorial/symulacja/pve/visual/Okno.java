@@ -7,16 +7,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import bot.tutorial.symulacja.pve.classes.DerivativeCommon;
+import bot.tutorial.symulacja.pve.classes.DerivativeMonster;
 import bot.tutorial.symulacja.pve.classes.DerivativePlayer;
 import bot.tutorial.symulacja.pve.classes.Enemy;
 import bot.tutorial.symulacja.pve.classes.Fight;
 import bot.tutorial.symulacja.pve.classes.Loadable;
 import bot.tutorial.symulacja.pve.classes.Monster;
 import bot.tutorial.symulacja.pve.classes.Player;
+import bot.tutorial.symulacja.pve.visual.save_load.Load;
+import bot.tutorial.symulacja.pve.visual.save_load.Save;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.event.ActionEvent;
@@ -29,6 +34,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.JRadioButton;
 
 public class Okno extends JFrame 
 {
@@ -71,9 +77,9 @@ public class Okno extends JFrame
 	private JTextField textMinKryt50;
 	private JTextField textStalaUniku;
 	private JTextField textSzansaTk;
-	private JTextField textField_20;
-	private JTextField textField_21;
-	private JTextField textField_22;
+	private JTextField textSrUb;
+	private JTextField textSrUnik;
+	private JTextField textSrEnergia;
 	private JSpinner spinnerLevelMoba;
 	private JTextField textTrafienieGracza;
 	private JTextField textZdolnoscUnikuGracza;
@@ -94,6 +100,14 @@ public class Okno extends JFrame
 	private JTextField textObronaGracza;
 	private JSpinner spinnerWytrzymalosc;
 	private JSpinner spinnerObronaZEq;
+	private JSpinner spinnerSilaWoli;
+	private JSpinner spinnerLiczbaSymulacji;
+	private JSpinner spinnerWalkiPodRzad;
+	private JRadioButton rdbtnElakka;
+	private JRadioButton rdbtnSith;
+	private JTextField textWygrane;
+	private JTextField textRemisy;
+	private JTextField textPrzegrane;
 
 	/**
 	 * Launch the application.
@@ -123,6 +137,55 @@ public class Okno extends JFrame
 	{
 		createControls();
 		createEvents();
+		
+		Load.wczytaj(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+				spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+				spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+				m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
+		
+		rdbtnElakka = new JRadioButton("Elakka");
+		rdbtnElakka.setBounds(21, 328, 80, 23);
+		contentPane.add(rdbtnElakka);
+		
+		rdbtnSith = new JRadioButton("Sith");
+		rdbtnSith.setBounds(21, 354, 80, 23);
+		contentPane.add(rdbtnSith);
+		
+		textWygrane = new JTextField();
+		textWygrane.setText("0");
+		textWygrane.setHorizontalAlignment(SwingConstants.RIGHT);
+		textWygrane.setEditable(false);
+		textWygrane.setColumns(10);
+		textWygrane.setBounds(559, 109, 78, 20);
+		contentPane.add(textWygrane);
+		
+		JLabel lblwygranych = new JLabel("%Wygranych");
+		lblwygranych.setBounds(559, 94, 78, 14);
+		contentPane.add(lblwygranych);
+		
+		textRemisy = new JTextField();
+		textRemisy.setText("0");
+		textRemisy.setHorizontalAlignment(SwingConstants.RIGHT);
+		textRemisy.setEditable(false);
+		textRemisy.setColumns(10);
+		textRemisy.setBounds(559, 149, 78, 20);
+		contentPane.add(textRemisy);
+		
+		JLabel lblprzegranych = new JLabel("%Remisów");
+		lblprzegranych.setBounds(569, 134, 68, 14);
+		contentPane.add(lblprzegranych);
+		
+		textPrzegrane = new JTextField();
+		textPrzegrane.setText("0");
+		textPrzegrane.setHorizontalAlignment(SwingConstants.RIGHT);
+		textPrzegrane.setEditable(false);
+		textPrzegrane.setColumns(10);
+		textPrzegrane.setBounds(559, 190, 78, 20);
+		contentPane.add(textPrzegrane);
+		
+		JLabel lblremisw = new JLabel("%Przegranych");
+		lblremisw.setBounds(559, 175, 78, 14);
+		contentPane.add(lblremisw);
 	}
 	
 	//tworzy obiekty klasy wizualnej
@@ -228,7 +291,8 @@ public class Okno extends JFrame
 		lblWytrzymalosc.setBounds(111, 94, 78, 14);
 		contentPane.add(lblWytrzymalosc);
 		
-		JSpinner spinnerSilaWoli = new JSpinner();
+		spinnerSilaWoli = new JSpinner();
+		spinnerSilaWoli.setModel(new SpinnerNumberModel(new Double(0), null, null, new Double(1)));
 		spinnerSilaWoli.setName("");
 		spinnerSilaWoli.setBounds(199, 109, 78, 20);
 		contentPane.add(spinnerSilaWoli);
@@ -602,7 +666,7 @@ public class Okno extends JFrame
 		lblMin_5.setBounds(786, 407, 78, 14);
 		contentPane.add(lblMin_5);
 		
-		JSpinner spinnerLiczbaSymulacji = new JSpinner();
+		spinnerLiczbaSymulacji = new JSpinner();
 		spinnerLiczbaSymulacji.setModel(new SpinnerNumberModel(new Integer(10000), new Integer(1), null, new Integer(1)));
 		spinnerLiczbaSymulacji.setName("");
 		spinnerLiczbaSymulacji.setBounds(559, 15, 78, 20);
@@ -612,7 +676,7 @@ public class Okno extends JFrame
 		lblLiczbaSymulacji.setBounds(559, 0, 78, 14);
 		contentPane.add(lblLiczbaSymulacji);
 		
-		JSpinner spinnerWalkiPodRzad = new JSpinner();
+		spinnerWalkiPodRzad = new JSpinner();
 		spinnerWalkiPodRzad.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 		spinnerWalkiPodRzad.setName("");
 		spinnerWalkiPodRzad.setBounds(559, 52, 78, 20);
@@ -646,40 +710,40 @@ public class Okno extends JFrame
 		textSzansaTk.setBounds(591, 382, 78, 20);
 		contentPane.add(textSzansaTk);
 		
-		textField_20 = new JTextField();
-		textField_20.setText("0");
-		textField_20.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_20.setEditable(false);
-		textField_20.setColumns(10);
-		textField_20.setBounds(559, 109, 78, 20);
-		contentPane.add(textField_20);
+		textSrUb = new JTextField();
+		textSrUb.setText("0");
+		textSrUb.setHorizontalAlignment(SwingConstants.RIGHT);
+		textSrUb.setEditable(false);
+		textSrUb.setColumns(10);
+		textSrUb.setBounds(466, 109, 78, 20);
+		contentPane.add(textSrUb);
 		
 		JLabel lblredniaUb = new JLabel("Średnia UB");
-		lblredniaUb.setBounds(559, 94, 78, 14);
+		lblredniaUb.setBounds(466, 94, 78, 14);
 		contentPane.add(lblredniaUb);
 		
-		textField_21 = new JTextField();
-		textField_21.setText("0");
-		textField_21.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_21.setEditable(false);
-		textField_21.setColumns(10);
-		textField_21.setBounds(559, 149, 78, 20);
-		contentPane.add(textField_21);
+		textSrUnik = new JTextField();
+		textSrUnik.setText("0");
+		textSrUnik.setHorizontalAlignment(SwingConstants.RIGHT);
+		textSrUnik.setEditable(false);
+		textSrUnik.setColumns(10);
+		textSrUnik.setBounds(466, 149, 78, 20);
+		contentPane.add(textSrUnik);
 		
 		JLabel lblredniUnik = new JLabel("Średni unik");
-		lblredniUnik.setBounds(558, 134, 79, 14);
+		lblredniUnik.setBounds(465, 134, 79, 14);
 		contentPane.add(lblredniUnik);
 		
-		textField_22 = new JTextField();
-		textField_22.setText("0");
-		textField_22.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField_22.setEditable(false);
-		textField_22.setColumns(10);
-		textField_22.setBounds(559, 190, 78, 20);
-		contentPane.add(textField_22);
+		textSrEnergia = new JTextField();
+		textSrEnergia.setText("0");
+		textSrEnergia.setHorizontalAlignment(SwingConstants.RIGHT);
+		textSrEnergia.setEditable(false);
+		textSrEnergia.setColumns(10);
+		textSrEnergia.setBounds(466, 190, 78, 20);
+		contentPane.add(textSrEnergia);
 		
 		JLabel lblredniKosztPoziomu = new JLabel("Średni koszt poziomu");
-		lblredniKosztPoziomu.setBounds(537, 175, 100, 14);
+		lblredniKosztPoziomu.setBounds(444, 175, 100, 14);
 		contentPane.add(lblredniKosztPoziomu);
 		
 		JLabel lblTrafienie = new JLabel("Trafienie gracza");
@@ -707,7 +771,7 @@ public class Okno extends JFrame
 		contentPane.add(textZdolnoscUnikuGracza);
 		
 		JLabel lblObronaGracza = new JLabel("Obrona gracza");
-		lblObronaGracza.setBounds(233, 216, 78, 14);
+		lblObronaGracza.setBounds(287, 216, 78, 14);
 		contentPane.add(lblObronaGracza);
 		
 		textObronaGracza = new JTextField();
@@ -715,7 +779,7 @@ public class Okno extends JFrame
 		textObronaGracza.setHorizontalAlignment(SwingConstants.RIGHT);
 		textObronaGracza.setEditable(false);
 		textObronaGracza.setColumns(10);
-		textObronaGracza.setBounds(233, 231, 78, 20);
+		textObronaGracza.setBounds(287, 231, 78, 20);
 		contentPane.add(textObronaGracza);
 		
 //		JSpinner []spinner = new JSpinner[30];
@@ -742,9 +806,23 @@ public class Okno extends JFrame
 			public void actionPerformed(ActionEvent arg0) {
 				
 				Fight fight = new Fight();
-				fight.walka(24, textArea, p, m);
+				fight.walka((Integer)spinnerLiczbaSymulacji.getValue(), textArea, p, m, textSrUb, textSrUnik, textSrEnergia, textWygrane, textRemisy, textPrzegrane);
 			}
 		});
+		
+//		rdbtnElakka.addActionListener(new ActionListener() { TODO
+//			public void actionPerformed(ActionEvent arg0) {
+//				m.setMiasto(true);
+//				rdbtnSith.setSelected(false);
+//			}
+//		});
+//		
+//		rdbtnSith.addActionListener(new ActionListener() { TODO
+//			public void actionPerformed(ActionEvent arg0) {
+//				m.setMiasto(false);
+//				rdbtnSith.setSelected(true);
+//			}
+//		});
 		
 
 		spinnerLevelMoba.addChangeListener(new ChangeListener() {
@@ -760,6 +838,16 @@ public class Okno extends JFrame
 				textHpMoba.setText(m.getHp()+"");
 				textSzybkoscMoba.setText(m.getSumaSzybkosci()+"");
 				
+				DerivativeMonster.przeliczDmg(m, textMinDmgMoba, textMaxDmgMoba);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -773,18 +861,45 @@ public class Okno extends JFrame
 						spinnerWampiryzm, textTrafienieGracza);
 				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
 						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+				
+				DerivativePlayer.przeliczKryty(p, textMinKryt10, textMaxKryt10, textMinKryt15, textMaxKryt15, 
+						textMinKryt20, textMaxKryt20, textMinKryt30, textMaxKryt30, 
+						textMinKryt40, textMaxKryt40, textMinKryt50, textMaxKryt50);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+			
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
 		spinnerHp.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				p.setHp((Integer)spinnerHp.getValue());
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
+			
 		});
 		
 		spinnerBron.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				DerivativePlayer.przeliczDmg(p, spinnerBron, spinnerSila, textMinAtakGracza, textMaxAtakGracza);
+				DerivativePlayer.przeliczKryty(p, textMinKryt10, textMaxKryt10, textMinKryt15, textMaxKryt15, 
+						textMinKryt20, textMaxKryt20, textMinKryt30, textMaxKryt30, 
+						textMinKryt40, textMaxKryt40, textMinKryt50, textMaxKryt50);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -793,6 +908,17 @@ public class Okno extends JFrame
 				DerivativePlayer.przeliczDmg(p, spinnerBron, spinnerSila, textMinAtakGracza, textMaxAtakGracza);
 				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
 						spinnerWampiryzm, textTrafienieGracza);
+				DerivativePlayer.przeliczKryty(p, textMinKryt10, textMaxKryt10, textMinKryt15, textMaxKryt15, 
+						textMinKryt20, textMaxKryt20, textMinKryt30, textMaxKryt30, 
+						textMinKryt40, textMaxKryt40, textMinKryt50, textMaxKryt50);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -801,6 +927,17 @@ public class Okno extends JFrame
 				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
 						spinnerWampiryzm, textTrafienieGracza);
 				DerivativePlayer.przeliczObrone(p, spinnerWytrzymalosc, spinnerZrecznosc, spinnerObronaZEq, textObronaGracza);
+				DerivativePlayer.przeliczKryty(p, textMinKryt10, textMaxKryt10, textMinKryt15, textMaxKryt15, 
+						textMinKryt20, textMaxKryt20, textMinKryt30, textMaxKryt30, 
+						textMinKryt40, textMaxKryt40, textMinKryt50, textMaxKryt50);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -808,6 +945,17 @@ public class Okno extends JFrame
 			public void stateChanged(ChangeEvent e) {
 				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
 						spinnerWampiryzm, textTrafienieGracza);
+				DerivativePlayer.przeliczKryty(p, textMinKryt10, textMaxKryt10, textMinKryt15, textMaxKryt15, 
+						textMinKryt20, textMaxKryt20, textMinKryt30, textMaxKryt30, 
+						textMinKryt40, textMaxKryt40, textMinKryt50, textMaxKryt50);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -815,6 +963,11 @@ public class Okno extends JFrame
 			public void stateChanged(ChangeEvent e) {
 				
 				DerivativePlayer.przeliczObrone(p, spinnerWytrzymalosc, spinnerZrecznosc, spinnerObronaZEq, textObronaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -824,6 +977,14 @@ public class Okno extends JFrame
 				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
 						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
 				DerivativePlayer.przeliczStalaUniku(p, spinnerUnik, textStalaUniku);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -832,6 +993,14 @@ public class Okno extends JFrame
 				DerivativePlayer.przeliczSzanseTk(p, spinnerUb, textSzansaTk);
 				DerivativePlayer.przeliczTrafienie(p, spinnerUb, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
 						spinnerWampiryzm, textTrafienieGracza);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -841,6 +1010,14 @@ public class Okno extends JFrame
 				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
 						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
 				DerivativePlayer.przeliczSumeSzybkosci(p, spinnerSzybkosc, spinnerSzybkoscBroni);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -848,6 +1025,11 @@ public class Okno extends JFrame
 			public void stateChanged(ChangeEvent e) {
 				
 				DerivativePlayer.przeliczObrone(p, spinnerWytrzymalosc, spinnerZrecznosc, spinnerObronaZEq, textObronaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -857,6 +1039,14 @@ public class Okno extends JFrame
 				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
 						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
 				DerivativePlayer.przeliczSumeSzybkosci(p, spinnerSzybkosc, spinnerSzybkoscBroni);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -865,6 +1055,14 @@ public class Okno extends JFrame
 				
 				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
 						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 		
@@ -873,6 +1071,14 @@ public class Okno extends JFrame
 				
 				DerivativePlayer.przeliczZdolnoscUniku(p, spinnerUnik, spinnerSzybkosc, spinnerSzybkoscBroni, spinnerUnikZEq,
 						spinnerKaraDoUniku, spinnerZlodziejstwo, textZdolnoscUnikuGracza);
+				
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
 	}

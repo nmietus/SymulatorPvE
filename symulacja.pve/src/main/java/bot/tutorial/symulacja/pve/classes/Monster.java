@@ -14,7 +14,7 @@ public class Monster extends Enemy implements Loadable {
 		this.setSzansaTk(0);		//TODO nie wiem czy nie -1 powinno być
 	}
 
-	public boolean isMiasto() {
+	public boolean getMiasto() {
 		return miasto;
 	}
 
