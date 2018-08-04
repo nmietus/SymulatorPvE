@@ -806,7 +806,7 @@ public class Okno extends JFrame
 			public void actionPerformed(ActionEvent arg0) {
 				
 				Fight fight = new Fight();
-				fight.walka((Integer)spinnerLiczbaSymulacji.getValue(), textArea, p, m, textSrUb, textSrUnik, textSrEnergia, textWygrane, textRemisy, textPrzegrane);
+				fight.walka((Integer)spinnerLiczbaSymulacji.getValue(), p, m, textSrUb, textSrUnik, textSrEnergia, textWygrane, textRemisy, textPrzegrane);
 			}
 		});
 		
