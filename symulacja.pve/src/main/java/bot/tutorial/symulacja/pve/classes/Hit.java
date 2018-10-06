@@ -12,7 +12,7 @@ public class Hit {
 
 		Random losuj = new Random();
 		
-		if(szansa<losuj.nextInt(100)) wynik = false;
+		if(szansa<losuj.nextInt(100)+1) wynik = false;
 		else wynik = true;
 		
 		return wynik;

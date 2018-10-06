@@ -9,7 +9,7 @@ public class Monster extends Enemy implements Loadable {
 
 	public Monster() {
 		super();
-		miasto = true;
+		this.miasto = true;
 		this.setStalaUniku(1);
 		this.setSzansaTk(0);		//TODO nie wiem czy nie -1 powinno być
 	}

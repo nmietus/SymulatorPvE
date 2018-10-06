@@ -35,6 +35,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class Okno extends JFrame 
 {
@@ -108,6 +109,8 @@ public class Okno extends JFrame
 	private JTextField textWygrane;
 	private JTextField textRemisy;
 	private JTextField textPrzegrane;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTextField textDmgGracza;
 
 	/**
 	 * Launch the application.
@@ -143,49 +146,18 @@ public class Okno extends JFrame
 				spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
 				m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 		
-		rdbtnElakka = new JRadioButton("Elakka");
-		rdbtnElakka.setBounds(21, 328, 80, 23);
-		contentPane.add(rdbtnElakka);
+		textDmgGracza = new JTextField();
+		textDmgGracza.setText("0");
+		textDmgGracza.setHorizontalAlignment(SwingConstants.RIGHT);
+		textDmgGracza.setEditable(false);
+		textDmgGracza.setColumns(10);
+		textDmgGracza.setBounds(199, 231, 78, 20);
+		contentPane.add(textDmgGracza);
 		
-		rdbtnSith = new JRadioButton("Sith");
-		rdbtnSith.setBounds(21, 354, 80, 23);
-		contentPane.add(rdbtnSith);
+		JLabel lblDmgGracza = new JLabel("Dmg gracza");
+		lblDmgGracza.setBounds(199, 216, 78, 14);
+		contentPane.add(lblDmgGracza);
 		
-		textWygrane = new JTextField();
-		textWygrane.setText("0");
-		textWygrane.setHorizontalAlignment(SwingConstants.RIGHT);
-		textWygrane.setEditable(false);
-		textWygrane.setColumns(10);
-		textWygrane.setBounds(559, 109, 78, 20);
-		contentPane.add(textWygrane);
-		
-		JLabel lblwygranych = new JLabel("%Wygranych");
-		lblwygranych.setBounds(559, 94, 78, 14);
-		contentPane.add(lblwygranych);
-		
-		textRemisy = new JTextField();
-		textRemisy.setText("0");
-		textRemisy.setHorizontalAlignment(SwingConstants.RIGHT);
-		textRemisy.setEditable(false);
-		textRemisy.setColumns(10);
-		textRemisy.setBounds(559, 149, 78, 20);
-		contentPane.add(textRemisy);
-		
-		JLabel lblprzegranych = new JLabel("%Remisów");
-		lblprzegranych.setBounds(569, 134, 68, 14);
-		contentPane.add(lblprzegranych);
-		
-		textPrzegrane = new JTextField();
-		textPrzegrane.setText("0");
-		textPrzegrane.setHorizontalAlignment(SwingConstants.RIGHT);
-		textPrzegrane.setEditable(false);
-		textPrzegrane.setColumns(10);
-		textPrzegrane.setBounds(559, 190, 78, 20);
-		contentPane.add(textPrzegrane);
-		
-		JLabel lblremisw = new JLabel("%Przegranych");
-		lblremisw.setBounds(559, 175, 78, 14);
-		contentPane.add(lblremisw);
 	}
 	
 	//tworzy obiekty klasy wizualnej
@@ -449,6 +421,16 @@ public class Okno extends JFrame
 		JLabel lblSzybkoscMoba = new JLabel("Szybkosc moba");
 		lblSzybkoscMoba.setBounds(111, 407, 78, 14);
 		contentPane.add(lblSzybkoscMoba);
+		
+		rdbtnElakka = new JRadioButton("Elakka");
+		buttonGroup.add(rdbtnElakka);
+		rdbtnElakka.setBounds(21, 328, 80, 23);
+		contentPane.add(rdbtnElakka);
+		
+		rdbtnSith = new JRadioButton("Sith");
+		buttonGroup.add(rdbtnSith);
+		rdbtnSith.setBounds(21, 354, 80, 23);
+		contentPane.add(rdbtnSith);
 		
 		textMinDmgMoba = new JTextField();
 		textMinDmgMoba.setText("0");
@@ -758,8 +740,8 @@ public class Okno extends JFrame
 		textTrafienieGracza.setBounds(23, 231, 78, 20);
 		contentPane.add(textTrafienieGracza);
 		
-		JLabel lblZdolnoUnikuGracza = new JLabel("Zdolność uniku gracza");
-		lblZdolnoUnikuGracza.setBounds(111, 216, 112, 14);
+		JLabel lblZdolnoUnikuGracza = new JLabel("Zdolność uniku");
+		lblZdolnoUnikuGracza.setBounds(111, 216, 78, 14);
 		contentPane.add(lblZdolnoUnikuGracza);
 		
 		textZdolnoscUnikuGracza = new JTextField();
@@ -781,6 +763,42 @@ public class Okno extends JFrame
 		textObronaGracza.setColumns(10);
 		textObronaGracza.setBounds(287, 231, 78, 20);
 		contentPane.add(textObronaGracza);
+		
+		textWygrane = new JTextField();
+		textWygrane.setText("0");
+		textWygrane.setHorizontalAlignment(SwingConstants.RIGHT);
+		textWygrane.setEditable(false);
+		textWygrane.setColumns(10);
+		textWygrane.setBounds(559, 109, 78, 20);
+		contentPane.add(textWygrane);
+		
+		JLabel lblwygranych = new JLabel("%Wygranych");
+		lblwygranych.setBounds(559, 94, 78, 14);
+		contentPane.add(lblwygranych);
+		
+		textRemisy = new JTextField();
+		textRemisy.setText("0");
+		textRemisy.setHorizontalAlignment(SwingConstants.RIGHT);
+		textRemisy.setEditable(false);
+		textRemisy.setColumns(10);
+		textRemisy.setBounds(559, 149, 78, 20);
+		contentPane.add(textRemisy);
+		
+		JLabel lblprzegranych = new JLabel("%Remisów");
+		lblprzegranych.setBounds(569, 134, 68, 14);
+		contentPane.add(lblprzegranych);
+		
+		textPrzegrane = new JTextField();
+		textPrzegrane.setText("0");
+		textPrzegrane.setHorizontalAlignment(SwingConstants.RIGHT);
+		textPrzegrane.setEditable(false);
+		textPrzegrane.setColumns(10);
+		textPrzegrane.setBounds(559, 190, 78, 20);
+		contentPane.add(textPrzegrane);
+		
+		JLabel lblremisw = new JLabel("%Przegranych");
+		lblremisw.setBounds(559, 175, 78, 14);
+		contentPane.add(lblremisw);
 		
 //		JSpinner []spinner = new JSpinner[30];
 //		
@@ -810,19 +828,7 @@ public class Okno extends JFrame
 			}
 		});
 		
-//		rdbtnElakka.addActionListener(new ActionListener() { TODO
-//			public void actionPerformed(ActionEvent arg0) {
-//				m.setMiasto(true);
-//				rdbtnSith.setSelected(false);
-//			}
-//		});
-//		
-//		rdbtnSith.addActionListener(new ActionListener() { TODO
-//			public void actionPerformed(ActionEvent arg0) {
-//				m.setMiasto(false);
-//				rdbtnSith.setSelected(true);
-//			}
-//		});
+		
 		
 
 		spinnerLevelMoba.addChangeListener(new ChangeListener() {
@@ -850,6 +856,61 @@ public class Okno extends JFrame
 						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
+		
+		rdbtnElakka.addActionListener(new ActionListener() { //TODO
+			public void actionPerformed(ActionEvent e) {
+				
+				if(rdbtnElakka.isSelected()) {
+					m.setMiasto(true);
+				}
+				
+				m.load(m, (Integer)spinnerLevelMoba.getValue());
+				
+				textAtakMoba.setText(m.getDmg()+"");
+				textObronaMoba.setText(m.getObrona()+"");
+				textTrafienieUnikMoba.setText(m.getTrafienie()+"");
+				textHpMoba.setText(m.getHp()+"");
+				textSzybkoscMoba.setText(m.getSumaSzybkosci()+"");
+				
+				DerivativeMonster.przeliczDmg(m, textMinDmgMoba, textMaxDmgMoba);
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
+			}
+		});
+		
+		rdbtnSith.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(rdbtnSith.isSelected()) {
+					m.setMiasto(false);
+				}
+				
+				m.load(m, (Integer)spinnerLevelMoba.getValue());
+				
+				textAtakMoba.setText(m.getDmg()+"");
+				textObronaMoba.setText(m.getObrona()+"");
+				textTrafienieUnikMoba.setText(m.getTrafienie()+"");
+				textHpMoba.setText(m.getHp()+"");
+				textSzybkoscMoba.setText(m.getSumaSzybkosci()+"");
+				
+				DerivativeMonster.przeliczDmg(m, textMinDmgMoba, textMaxDmgMoba);
+				DerivativeCommon.szansaTrafienia(m, p, textSzansaUnikuGracza);
+				DerivativeCommon.szansaTrafienia(p, m, textSzansaTrafieniaGracza);
+				
+				Save.zapisz(spinnerLevel, spinnerHp, spinnerBron, spinnerSila, spinnerZrecznosc, spinnerInteligencja, 
+						spinnerObronaZEq, spinnerWytrzymalosc, spinnerSilaWoli, spinnerSzybkosc, spinnerSzybkoscBroni, 
+						spinnerUb, spinnerUnik, spinnerKaraDoUniku, spinnerUnikZEq, spinnerWampiryzm, spinnerZlodziejstwo, spinnerLevelMoba, 
+						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
+			}
+		});
+		
+	
+	
 		
 		spinnerLevel.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
@@ -1081,5 +1142,7 @@ public class Okno extends JFrame
 						m.getMiasto(), spinnerLiczbaSymulacji, spinnerWalkiPodRzad);
 			}
 		});
+		
+		
 	}
 }
